@@ -1,0 +1,37 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local environments
+.env
+.venv/
+venv/
+env/
+
+# Large model/data artifacts
+data/
+datasets/
+checkpoints/
+outputs/
+results/
+wandb/
+mlruns/
+*.nii
+*.nii.gz
+*.dcm
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Private clinical material
+*report*
+*annotation*
+*patient*
+*phi*
+*PHI*
