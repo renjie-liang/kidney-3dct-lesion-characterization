@@ -10,3 +10,6 @@ omegaconf>=2.3        # tested 2.3
 PyYAML>=6.0           # tested 6.0
 tqdm>=4.65            # tested 4.67
 nibabel>=5.0          # tested 5.3   (NIfTI I/O; KiTS23 prep, L1 input path)
+
+# Optional: only for the inflated-2D ViT encoder (encoder=vit_inflated).
+# timm>=0.9
