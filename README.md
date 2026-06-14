@@ -14,6 +14,14 @@ side-level objectives across three label granularities:
 - **L2** — side-level lesion type (cyst / solid) and max size
 - **L3** — per-lesion attributes
 
+![Overview of the lesion-centric characterization framework](assets/overview.png)
+
+*A 3D kidney CT volume and its segmentation mask are combined into an input
+representation, encoded by a 3D CT encoder, and passed to multi-level prediction
+heads (L1 side-level abnormality, L2 side-level type and size, L3 per-lesion
+attributes). A hierarchical supervision loss trains all three levels from the
+per-lesion outputs.*
+
 > **Results:** see [`RESULTS.md`](RESULTS.md) for the paper's numbers
 > (Tables 2–4). They require the private UF Health dataset and are **not**
 > reproducible from the public/synthetic data here.
@@ -141,4 +149,4 @@ licensed separately under CC BY-NC-SA 4.0 (see [`DATA.md`](DATA.md)).
 
 ## Contact
 
-Jie Xu — xujie@ufl.edu
+Renjie Liang — liang.renjie@ufl.edu
