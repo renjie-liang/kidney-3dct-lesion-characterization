@@ -7,9 +7,9 @@ datasets on
 
 ## UF Health dataset (not released)
 
-The real UF Health CT + report-derived labels cannot be released (patient
-privacy / institutional data-use). No PHI, reports, identifiers, or private
-annotations appear anywhere here.
+The real UF Health CT and report-derived labels cannot be released because of
+patient-privacy and institutional data-use restrictions. No PHI, reports,
+identifiers, or private annotations appear anywhere here.
 
 ### Data format
 
@@ -44,21 +44,21 @@ Mask labels: `0` bg, `1/2` left/right kidney, `3/4` left/right solid,
 
 ## Synthetic data
 
-`python tools/generate_synthetic_data.py --out datasets` writes random
-volumes/masks/labels following the schema above — runs the full pipeline
-(incl. L3), but reproduces no paper number. A copy is also on Hugging Face.
+`python tools/generate_synthetic_data.py --out datasets` writes random volumes,
+masks, and labels following the schema above. It runs the full pipeline including
+L3 but reproduces no paper number. A copy is also on Hugging Face.
 
 ## KiTS23 (external validation)
 
-[KiTS23](https://kits-challenge.org/kits23/) (489 cases, **CC BY-NC-SA 4.0**) is
-used for zero-shot external validation. It has voxel segmentations but no
-report attributes, so it supports **L1/L2** only.
+[KiTS23](https://kits-challenge.org/kits23/) has 489 cases and is licensed
+**CC BY-NC-SA 4.0**. We use it for zero-shot external validation. It has voxel
+segmentations but no report attributes, so it supports **L1/L2** only.
 
-- **Subset:** 6 preprocessed cases on Hugging Face (`kits23_subset/`) run the
-  eval path out of the box; they stay under CC BY-NC-SA 4.0 (see `ATTRIBUTION.md`).
-- **Full:** download official KiTS23, then
-  `python tools/prepare_kits23.py --raw /path/to/kits23/dataset --out datasets/KiTS23/processed`
-  (5-step pipeline in `tools/process_kits23/`; transforms your local copy only).
+- **Subset:** 6 preprocessed cases on Hugging Face under `kits23_subset/` run the
+  eval path out of the box. They stay under CC BY-NC-SA 4.0; see `ATTRIBUTION.md`.
+- **Full:** download official KiTS23, then run
+  `python tools/prepare_kits23.py --raw /path/to/kits23/dataset --out datasets/KiTS23/processed`.
+  The 5-step pipeline in `tools/process_kits23/` transforms your local copy only.
 
 Cite KiTS23 as directed by the organizers (<https://github.com/neheller/kits23>):
 
