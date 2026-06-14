@@ -37,8 +37,7 @@ from-scratch encoder; it verifies the code path, not paper numbers.
 
 ## Paths & config
 
-Training uses [Hydra](https://hydra.cc) (`configs/default.yaml`, override on the
-CLI). Data/weight locations come from env vars (with runnable defaults):
+Data and weight locations come from environment variables (with runnable defaults):
 
 | Variable | Meaning | Default |
 |---|---|---|
