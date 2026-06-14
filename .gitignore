@@ -16,6 +16,9 @@ env/
 # Large model/data artifacts
 data/
 datasets/
+weights/
+experiments/
+out_slurm/
 checkpoints/
 outputs/
 results/

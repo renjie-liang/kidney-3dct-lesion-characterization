@@ -1,0 +1,43 @@
+# Smoke-test config: trains LesionDETR end-to-end on the SYNTHETIC dataset.
+#
+#   1. python tools/generate_synthetic_data.py --out datasets
+#   2. python train.py --config-name smoke
+#
+# Uses a from-scratch encoder (no pretrained weights required) and tiny
+# volumes so the whole pipeline runs in a couple of minutes on a single GPU
+# (or slowly on CPU). It verifies the code path only; it is NOT a paper result.
+
+encoder: from_scratch    # randomly initialised SwinUNETR (no weight download)
+ct_level: L3
+mask_strategy: binary    # kidney mask as a second input channel
+mask_dropout_prob: 0.3
+label_level: L3_D
+freeze_encoder: false
+
+# Input preprocessing (small, to match the synthetic volumes)
+target_size: [64, 64, 64]
+hu_min: -200
+hu_max: 400
+flip_x: false
+pad_only: 0
+normalize_mode: minmax
+
+# Model
+feature_size: 48
+hidden_dim: 64
+dropout: 0.3
+
+# Training (short)
+lr: 5e-4
+weight_decay: 0.01
+batch_size: 2
+accumulate_steps: 1
+epochs: 2
+num_workers: 0
+overfit_n: 0
+fewshot_fraction: 0
+hier_weight: 0.3
+hier_mode: l1
+seed: 42
+
+exp_group: "smoke"

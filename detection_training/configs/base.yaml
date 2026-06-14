@@ -1,0 +1,62 @@
+# Base config (extended by all experiment configs).
+# Matches core_matrix_v2 Crop+Kmask L3D baseline, but 50 epochs instead of 30.
+
+# Data / preprocessing
+ct_level: L3
+mask_strategy: binary
+flip_x: true
+pad_only: 0
+
+# Model
+encoder: suprem
+label_level: L3_D
+hidden_dim: 128
+dropout: 0.3
+
+# Training
+epochs: 30
+batch_size: 4
+accumulate_steps: 4
+lr: 0.0005
+weight_decay: 0.01
+num_workers: 4
+
+# Loss (baseline = positional BCE + hier L1)
+mode: positional
+hier_weight: 0.3
+hier_mode: l1
+
+# Disabled by default (enabled in child configs)
+use_focal_exists: false
+use_count_reg: false
+use_joint_conf: false
+use_size_weight: false
+use_hard_neg: false
+use_label_smooth: false
+
+# Focal params
+focal_gamma: 2.0
+focal_alpha: 0.25
+
+# Count reg params
+count_reg_variant: soft_l1
+count_reg_weight: 0.5
+
+# Joint conf params
+joint_conf_weight: 0.3
+
+# Hungarian matching cost weights (used if mode=hungarian)
+hungarian_cost_weights:
+  w_size: 1.0
+  w_cyst: 1.0
+  w_solid: 1.0
+  size_scale: 10.0
+hungarian_no_object_weight: 0.1
+hungarian_size_loss_weight: 0.1
+focal_alpha_hungarian: 1.0   # disable alpha class balance in hungarian partition
+
+# D3: Loss-component weights (rebalance so detection gets enough gradient)
+exists_loss_weight: 2.0
+type_loss_weight: 1.0
+enh_loss_weight: 0.3
+att_loss_weight: 0.3

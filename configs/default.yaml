@@ -1,0 +1,36 @@
+# Default training config
+encoder: suprem          # suprem | voco | from_scratch | resnet18 | ctvit | ctvit_scratch
+ct_level: L2             # L1 | L2 | L3 | D2
+mask_strategy: none      # none | binary | dropout | noisy | 7class
+mask_dropout_prob: 0.3
+label_level: L1          # L1 | L2 | L3_D
+freeze_encoder: false
+
+# Input preprocessing
+target_size: [320, 192, 224]
+hu_min: -200
+hu_max: 400
+flip_x: false         # flip x,y axes to match SuPreM/VoCo orientation
+pad_only: 0           # 0=resize+pad, 1.0=pad only, 1.5=downsample, "0.75,0.75,1.5"=anisotropic
+normalize_mode: minmax  # minmax=[0,1], div1000=[-1,1]
+
+# Model
+feature_size: 48
+hidden_dim: 128
+dropout: 0.3
+
+# Training
+lr: 5e-4
+weight_decay: 0.01
+batch_size: 4
+accumulate_steps: 4
+epochs: 30
+num_workers: 4
+overfit_n: 0
+fewshot_fraction: 0
+hier_weight: 0.3
+hier_mode: l1         # l1l2 | l1
+seed: 42
+
+# Output
+exp_group: ""         # subdirectory under experiments/ (e.g. core_matrix, encoder_comparison)

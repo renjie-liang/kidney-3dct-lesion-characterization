@@ -1,0 +1,15 @@
+# Core dependencies (Python >= 3.10).
+# Tested with the versions in comments; the lower bounds are conservative.
+torch>=2.1            # tested 2.10
+monai>=1.3            # tested 1.5.1  (SwinUNETR, transforms)
+numpy>=1.24           # tested 2.2
+scipy>=1.10           # tested 1.15
+scikit-learn>=1.3     # tested 1.7   (AUC / metrics)
+hydra-core>=1.3       # tested 1.3.2 (train.py config)
+omegaconf>=2.3        # tested 2.3
+PyYAML>=6.0           # tested 6.0
+tqdm>=4.65            # tested 4.67
+nibabel>=5.0          # tested 5.3   (NIfTI I/O; KiTS23 prep, L1 input path)
+
+# Optional: only needed by finetune_kits23.py (experiment tracking).
+# mlflow>=2.0

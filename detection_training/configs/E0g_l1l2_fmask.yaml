@@ -1,0 +1,36 @@
+# E0g_l1l2 + ct_level=L3 mask=7class (for core matrix L3 row).
+ct_level: L3
+mask_strategy: 7class
+flip_x: true
+pad_only: 0
+encoder: suprem
+label_level: L3_B
+hidden_dim: 256
+dropout: 0.3
+use_checkpoint: true
+amp_dtype: fp16
+epochs: 30
+batch_size: 4
+accumulate_steps: 4
+lr: 0.0005
+weight_decay: 0.01
+num_workers: 4
+mode: hungarian
+hier_weight: 1.0
+hier_mode: l1l2
+exists_loss_weight: 1.0
+type_loss_weight: 1.0
+hungarian_cost_weights:
+  w_exists: 1.0
+  w_size: 1.0
+  w_cyst: 1.0
+  w_solid: 1.0
+  size_scale: 10.0
+hungarian_no_object_weight: 0.1
+hungarian_size_loss_weight: 0.1
+use_focal_exists: false
+use_count_reg: false
+use_joint_conf: false
+use_label_smooth: false
+use_size_weight: false
+use_hard_neg: false

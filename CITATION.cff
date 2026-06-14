@@ -19,4 +19,24 @@ authors:
     orcid: "https://orcid.org/0000-0001-5291-5198"
 year: 2026
 repository-code: "https://github.com/renjie-liang/kidney-3dct-lesion-characterization"
-license: "NOASSERTION"
+license: "MIT"
+preferred-citation:
+  type: article
+  title: "Multi-Granularity 3D Kidney Lesion Characterization from CT Volumes"
+  year: 2026
+  notes: "Manuscript under review"
+  authors:
+    - family-names: Liang
+      given-names: Renjie
+    - family-names: Fan
+      given-names: Zhengkang
+    - family-names: Pan
+      given-names: Jinqian
+    - family-names: Sun
+      given-names: Chenkun
+    - family-names: Bian
+      given-names: Jiang
+    - family-names: Terry
+      given-names: Russell
+    - family-names: Xu
+      given-names: Jie
