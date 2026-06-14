@@ -1,7 +1,7 @@
 """Detection-oriented loss modules for per-lesion training.
 
-Each loss is a pure function with clear inputs/outputs. See PROPOSAL.md for
-method-to-module mapping (M1-M7).
+Each loss is a pure function with clear inputs and outputs; `combined.py`
+assembles them into the recipe for a given config.
 """
 from .focal import focal_bce_loss
 from .count_reg import count_reg_loss

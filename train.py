@@ -501,7 +501,6 @@ def main(cfg: DictConfig):
     mask_strategy = cfg.get("mask_strategy", "none")
     mask_dropout_prob = cfg.get("mask_dropout_prob", 0.3)
 
-    is_hma = cfg.encoder.startswith("hma_")
     flip_x = cfg.get("flip_x", False)
     pad_only = cfg.get("pad_only", 0)
     normalize_mode = cfg.get("normalize_mode", "minmax")
@@ -512,7 +511,7 @@ def main(cfg: DictConfig):
         ct_level=cfg.ct_level, augment=True,
         mask_strategy=mask_strategy,
         mask_dropout_prob=mask_dropout_prob,
-        return_mask=is_hma,
+        return_mask=False,
         flip_x=flip_x,
         pad_only=pad_only,
         normalize_mode=normalize_mode,
@@ -526,7 +525,7 @@ def main(cfg: DictConfig):
         hu_min=cfg.hu_min, hu_max=cfg.hu_max,
         ct_level=cfg.ct_level, augment=False,
         mask_strategy=eval_mask_strategy,
-        return_mask=is_hma,
+        return_mask=False,
         flip_x=flip_x,
         pad_only=pad_only,
         normalize_mode=normalize_mode,
@@ -564,14 +563,7 @@ def main(cfg: DictConfig):
     in_channels = 2 if cfg.ct_level == "L3" else 1
     is_d2 = cfg.ct_level == "D2"
 
-    if cfg.encoder.startswith("hma_"):
-        from models.hma_encoder import HMAEncoder
-        hma_mode = cfg.encoder.replace("hma_", "")  # binary or decomposed
-        encoder = HMAEncoder(
-            in_channels=1, feature_size=cfg.feature_size,
-            pretrained="suprem", hma_mode=hma_mode,
-        )
-    elif cfg.encoder == "resnet18":
+    if cfg.encoder == "resnet18":
         from models.encoder import ResNet3DEncoder
         encoder = ResNet3DEncoder(in_channels=in_channels)
     elif cfg.encoder in ("ctvit", "ctvit_scratch"):
@@ -611,20 +603,11 @@ def main(cfg: DictConfig):
     if cfg.freeze_encoder:
         for param in model.encoder.parameters():
             param.requires_grad = False
-        # HMA: unfreeze mask gates even when base encoder is frozen
-        if is_hma:
-            for param in model.encoder.mask_gates.parameters():
-                param.requires_grad = True
-            logger.info("Encoder frozen (HMA gates remain trainable)")
-        else:
-            logger.info("Encoder frozen")
+        logger.info("Encoder frozen")
 
     # Optimizer
     if cfg.freeze_encoder:
-        trainable = list(model.head.parameters())
-        if is_hma:
-            trainable += list(model.encoder.mask_gates.parameters())
-        params = trainable
+        params = list(model.head.parameters())
     else:
         encoder_params = list(model.encoder.parameters())
         head_params = list(model.head.parameters())

@@ -5,9 +5,6 @@ Self-contained training stack for the per-lesion detection-head experiments
 `data/`, `models/`, `losses/`, and `analysis/` subpackages and inserts its own
 directory on `sys.path`, so it runs independently of the top-level package.
 
-See `PROPOSAL.md` for the full design rationale, loss recipes, and experiment
-matrix.
-
 ## Quick start
 
 ### Submit experiments
@@ -45,7 +42,6 @@ Outputs:
 
 ```
 detection_training/
-├── PROPOSAL.md              # design document (what and why)
 ├── README.md                # this file
 ├── train_detection.py       # training entry point (self-contained)
 ├── eval_kits23_detection.py # external validation on KiTS23

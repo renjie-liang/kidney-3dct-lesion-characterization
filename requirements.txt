@@ -10,6 +10,3 @@ omegaconf>=2.3        # tested 2.3
 PyYAML>=6.0           # tested 6.0
 tqdm>=4.65            # tested 4.67
 nibabel>=5.0          # tested 5.3   (NIfTI I/O; KiTS23 prep, L1 input path)
-
-# Optional: only needed by finetune_kits23.py (experiment tracking).
-# mlflow>=2.0

@@ -69,18 +69,17 @@ class KidneyClassifier(nn.Module):
             self.head = heads[l3_approach](input_dim, hidden_dim=256)
 
     def forward(self, x: torch.Tensor, mask: torch.Tensor = None):
-        """Forward pass. For D2/HMA mode, pass mask separately.
+        """Forward pass. For D2 mode, pass mask separately.
 
         For L3_B (DETR-like head) we request the encoder's spatial tokens so
         cross-attention has a non-trivial key/value set.
         """
         from models.mask_guided_pooling import MaskGuidedEncoder
-        from models.hma_encoder import HMAEncoder
         from models.encoder import SwinUNETREncoder
         from models.l3_heads import L3HeadB
 
         need_spatial = isinstance(self.head, L3HeadB) and isinstance(self.encoder, SwinUNETREncoder)
-        if isinstance(self.encoder, (MaskGuidedEncoder, HMAEncoder)) and mask is not None:
+        if isinstance(self.encoder, MaskGuidedEncoder) and mask is not None:
             features = self.encoder(x, mask)
         elif need_spatial:
             features = self.encoder(x, return_spatial=True)
