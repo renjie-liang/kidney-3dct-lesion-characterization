@@ -86,6 +86,20 @@ KiTS23 provides voxel segmentations but no report-derived attributes, so it
 supports the **L1/L2** (side-level) evaluation only — not the L3 enhancement /
 attenuation attributes.
 
+If you use the KiTS23 data, cite it as directed by the organizers
+(<https://github.com/neheller/kits23>):
+
+```bibtex
+@misc{heller2023kits21,
+      title={The KiTS21 Challenge: Automatic segmentation of kidneys, renal tumors, and renal cysts in corticomedullary-phase CT},
+      author={Nicholas Heller and Fabian Isensee and Dasha Trofimova and Resha Tejpaul and Zhongchen Zhao and Huai Chen and Lisheng Wang and others},
+      year={2023},
+      eprint={2307.01984},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
+
 ## Privacy notice
 
 Do not commit protected health information, radiology reports, patient
